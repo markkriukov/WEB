@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Subscribers and Subscriptions API Documentation with Keycloak auth",
+        "description": "API for managing subscribers and subscriptions",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/php/api",
+            "description": "API Server"
+        },
+        {
+            "url": "http://localhost:8000/php/api",
+            "description": "Local API Server"
+        }
+    ],
+    "paths": {
+        "/subscribers": {
+            "get": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Get list of subscribers",
+                "operationId": "0ffcf85ffd5e76aae37d1d562769b8f6",
+                "responses": {
+                    "200": {
+                        "description": "List of subscribers",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscriber"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Create a new subscriber",
+                "operationId": "7a6bb14e6793922b9388f0d82c459e5d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Subscriber"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Subscriber created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscriber"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subscribers/{id}": {
+            "get": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Get a subscriber by ID",
+                "operationId": "f6d2d5b4825cb421736ebc3bc846fda8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Subscriber found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscriber"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Subscriber not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Update a subscriber by ID",
+                "operationId": "a151319efde5cb519d46c4266e468598",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Subscriber"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subscriber updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscriber"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Delete a subscriber by ID",
+                "operationId": "7d5f3ca3bfe0f65701c708aa687686ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Subscriber deleted"
+                    }
+                }
+            }
+        },
+        "/subscriptions": {
+            "get": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Get list of subscriptions",
+                "operationId": "2f9fb84079d533c0ae41ff634416b921",
+                "responses": {
+                    "200": {
+                        "description": "List of subscriptions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Subscription"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Create a new subscription",
+                "operationId": "8349d7a2711bf3b5786baebdc3e72bbf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Subscription"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Subscription created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscription"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subscriptions/{id}": {
+            "get": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Get a subscription by ID",
+                "operationId": "918b4e344f81a8580893448257626ccc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Subscription found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscription"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Subscription not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Update a subscription by ID",
+                "operationId": "700f5630d5b548f4305da68d69f569e3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Subscription"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subscription updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscription"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Delete a subscription by ID",
+                "operationId": "35233349398a214e1f30bb85bea963ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Subscription deleted"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Subscriber": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Mark Kriukov"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "markkriukov@gmail.com"
+                    },
+                    "subscriptions": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "service": {
+                                    "type": "string",
+                                    "example": "Youtube"
+                                },
+                                "topic": {
+                                    "type": "string",
+                                    "example": "News"
+                                },
+                                "payload": {
+                                    "type": "string",
+                                    "example": "{'VISA': '4567 1234 5678 9012'}"
+                                },
+                                "expired_at": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "example": "2025-01-12 18:09:01"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Subscription": {
+                "required": [
+                    "service",
+                    "topic",
+                    "payload",
+                    "expired_at"
+                ],
+                "properties": {
+                    "service": {
+                        "type": "string",
+                        "example": "Youtube"
+                    },
+                    "topic": {
+                        "type": "string",
+                        "example": "News"
+                    },
+                    "payload": {
+                        "type": "json",
+                        "example": "{'VISA': '4567 1234 5678 9012'}"
+                    },
+                    "expired_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-01-12 18:09:01"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Subscribers",
+            "description": "Subscribers"
+        },
+        {
+            "name": "Subscriptions",
+            "description": "Subscriptions"
+        }
+    ]
+}

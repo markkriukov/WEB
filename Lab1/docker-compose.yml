@@ -1,0 +1,47 @@
+version: "3.1"
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./frontend/dist:/srv/www/static
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - nodejs
+
+  nodejs:
+    image: node:alpine
+    environment:
+      NODE_ENV: production
+    working_dir: /home/app
+    restart: always
+    ports:
+      - "8001:3000"
+    volumes:
+      - ./node-app:/home/app
+    depends_on:
+      - php
+    command: ["node", "app.js"]
+
+  php:
+    image: webdevops/php-apache-dev:8.2
+    volumes:
+      - ./php-app:/app
+    ports:
+      - "8002:80"
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+  
+  python:
+    image: python:3.9-slim
+    volumes:
+      - ./python-app:/app
+    working_dir: /app
+    command: bash -c "pip install Flask && python app.py"
+    ports:
+      - "8003:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
